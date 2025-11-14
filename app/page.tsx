@@ -129,7 +129,7 @@ export default function Home() {
               ]}
               href="/roulette"
               gradient="from-pink-500 to-red-500"
-              available={false}
+              available={true}
             />
 
             <GameCard
@@ -144,7 +144,7 @@ export default function Home() {
               ]}
               href="/lottery"
               gradient="from-yellow-500 to-orange-500"
-              available={false}
+              available={true}
             />
           </div>
         </motion.div>
