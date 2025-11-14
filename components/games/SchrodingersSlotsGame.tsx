@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   schrodingersSlots,
+  SchrodingersSlots,
   BetType,
   SlotSymbol,
   type SpinResult,
@@ -293,7 +294,7 @@ export default function SchrodingersSlotsGame() {
                     {/* Symbols */}
                     <div className="flex justify-center gap-4 mb-4">
                       {currentSpin.finalSymbols.map((symbol, index) => {
-                        const info = schrodingersSlots.constructor.getSymbolInfo(symbol);
+                        const info = SchrodingersSlots.getSymbolInfo(symbol);
                         return (
                           <div
                             key={index}
@@ -387,7 +388,7 @@ export default function SchrodingersSlotsGame() {
                       >
                         <div className="flex gap-1">
                           {spin.finalSymbols.map((symbol, i) => (
-                            <span key={i}>{schrodingersSlots.constructor.getSymbolInfo(symbol).emoji}</span>
+                            <span key={i}>{SchrodingersSlots.getSymbolInfo(symbol).emoji}</span>
                           ))}
                         </div>
                         <div className={spin.payout > 0 ? 'text-green-400 font-bold' : 'text-gray-500'}>

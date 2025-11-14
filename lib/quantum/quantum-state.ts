@@ -70,7 +70,7 @@ export class QuantumStateManager {
     }, 0);
 
     const normFactor = Math.sqrt(totalProb);
-    const normalizedAmp = amplitudes[0].div(normFactor);
+    const normalizedAmp = math.divide(amplitudes[0], normFactor) as math.Complex;
 
     const state: QuantumState = {
       id,
@@ -277,7 +277,7 @@ export class QuantumStateManager {
 
     // Gradual decoherence
     const decoherenceFactor = 1 - (this.DECOHERENCE_RATE * deltaTime / 1000);
-    state.amplitude = state.amplitude.mul(decoherenceFactor);
+    state.amplitude = math.multiply(state.amplitude, decoherenceFactor) as math.Complex;
 
     // Recalculate probability
     state.probability = state.amplitude.re * state.amplitude.re +
@@ -294,7 +294,7 @@ export class QuantumStateManager {
     if (!state) return false;
 
     // Tunneling probability: e^(-2 * barrier * amplitude)
-    const tunnelingProb = Math.exp(-2 * barrier * state.amplitude.abs());
+    const tunnelingProb = Math.exp(-2 * barrier * math.abs(state.amplitude));
 
     const tunneled = Math.random() < tunnelingProb;
 

@@ -13,12 +13,12 @@ export default function Home() {
             key={i}
             className="absolute w-1 h-1 bg-cyan-400 rounded-full"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1920),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080),
               opacity: 0
             }}
             animate={{
-              y: [null, Math.random() * window.innerHeight],
+              y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080)],
               opacity: [0, 1, 0]
             }}
             transition={{
@@ -114,7 +114,7 @@ export default function Home() {
               ]}
               href="/poker"
               gradient="from-purple-500 to-pink-500"
-              available={false}
+              available={true}
             />
 
             <GameCard

@@ -3,6 +3,8 @@
  * Implements key tests to verify true randomness vs pseudo-randomness
  */
 
+import * as math from 'mathjs';
+
 export interface RandomnessTestResult {
   testName: string;
   passed: boolean;
@@ -69,7 +71,7 @@ export class QuantumRandomnessVerifier {
 
     const s = Math.abs(ones - zeros);
     const statistic = s / Math.sqrt(n);
-    const pValue = Math.erfc(statistic / Math.sqrt(2));
+    const pValue = 1 - math.erf(statistic / Math.sqrt(2));
 
     return {
       testName: 'Frequency (Monobit) Test',
@@ -129,7 +131,7 @@ export class QuantumRandomnessVerifier {
     const expectedRuns = 2 * n * pi * (1 - pi);
     const variance = 2 * n * pi * (1 - pi) * (2 * n * pi * (1 - pi) - 1) / (n - 1);
     const statistic = Math.abs(runs - expectedRuns) / Math.sqrt(variance);
-    const pValue = Math.erfc(statistic / Math.sqrt(2));
+    const pValue = 1 - math.erf(statistic / Math.sqrt(2));
 
     return {
       testName: 'Runs Test',
@@ -277,7 +279,7 @@ export class QuantumRandomnessVerifier {
     }
 
     const statistic = maxSum / Math.sqrt(n);
-    const pValue = Math.erfc(statistic / Math.sqrt(2));
+    const pValue = 1 - math.erf(statistic / Math.sqrt(2));
 
     return {
       testName: 'Cumulative Sums Test',
